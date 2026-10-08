@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenar arrays de cadenas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Ordenar arrays de cadenas</h1>
+     <p>Ingrese nombre en la caja de texto de abajo y ordenar listado</p>
+     <label for="nombre">Nombre:</label>
+     <input type="text" id="nombre" placeholder="Ingrese un nombre">
+     <button onclick="agregarNombre()">Agregar nombre y ordenar nombres</button>
+     <h2>Nombres ordenados</h2>
+     <textarea id="listaNombres" rows="10" cols="50" readonly>Aqui aparecerán los nombres ordenados</textarea>
+     <div id="resultado"></div>
+     <button onclick="limpiarListado()">Limpiar listado</button>   
+
+     <script>
+        let nombres = [];
+        function agregarNombre() {
+            const nombreInput = document.getElementById('nombre');
+            const nombre = nombreInput.value.trim();
+
+            if (/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+                nombres.push(nombre);
+                nombres.sort(); // Ordenar el array de nombres
+                mostrarNombres();
+                nombreInput.value = ''; // Limpiar el campo de texto
+            }
+        }
+
+        function mostrarNombres() {
+            const listaNombres = document.getElementById('listaNombres');
+            listaNombres.value = ''; // Limpia el textarea antes de mostrar los nombres
+
+            nombres.forEach(nombre => {
+                listaNombres.value += nombre + '\n';
+            });
+        }
+
+        function limpiarListado() {
+            nombres = [];
+            const listaNombres = document.getElementById('listaNombres');
+            listaNombres.value = '';
+        }
+     </script>
+    
+</body>
+</html>
+
+ 
+ 
